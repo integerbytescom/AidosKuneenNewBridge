@@ -1,0 +1,824 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aidos Kuneen / BSC Token Bridge</title>
+
+	  <!--other css libs-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+			crossorigin="anonymous"
+	/>
+
+	<!--our css libs-->
+    <link rel="stylesheet" href="styles/index.css" type="text/css" />
+	<link rel="stylesheet" href="styles/navbar.css" type="text/css" />
+	<link rel="stylesheet" href="styles/buttons.css" type="text/css" />
+	<link rel="stylesheet" href="styles/modal-connected.css" type="text/css" />
+	  <link rel="stylesheet" href="styles/navtab.css" type="text/css" />
+
+	<!--other script libs-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </head>
+
+  <body class="container">
+    <!-- loading -->
+	<div
+			class="alert alert-success p-3"
+			role="alert"
+			id="loading"
+			style="z-index:100; position:absolute; bottom:0; left:10px; width:250px;"
+	>
+		<strong style="font-size:12px">Loading information, please wait.</strong>
+	</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="infoModalLabel">Notification</h5>
+			<button type="button" class="close btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="infoModalBody">
+			  Message
+		  </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<nav class="navbar top">
+		<div class="container-fluid">
+			<div class="navbar-brand text-white">
+				<img src="/images/logo.svg" alt="Logo" height="30" class="d-inline-block align-text-top">
+				AidosKuneen
+			</div>
+			<Button onclick="onHideModal()" class="blue-but">Connect account</Button>
+		</div>
+	</nav>
+
+
+	<div id="modal-connect" class="container-fluid" style="position: relative">
+		<div class="modal-connected">
+			<div class="container-text">
+				Connected Account:
+				<span id="connectedAccount" class="ACCOUNT1 text-white"></span>
+			</div>
+
+			<div class="container-text">
+				<span id="chainId">Not Connected</span>
+			</div>
+
+			<button class="blue-but" id="connectButton" disabled > Connect </button>
+			<button class="close-but-text" onclick="onCloseModal()"> Close </button>
+		</div>
+	</div>
+
+	<!--header with flip direaction-->
+	 <xheader>
+        <div class="d-flex justify-content-center flex-wrap my-5">
+
+			<a href="" class="blue-but mb-3" id="flipLink" style="text-decoration: none;">
+				Flip direction
+			</a>
+
+			<h4 class="w-100 justify-content-center text-center text-white fw-light">
+				<img id="imgSrc" src='loading.png' style="width: 40px" alt="load">
+				<span class="SOURCECHAIN">SOURCE CHAIN</span>
+
+				<!--&#10148;-->
+				<small style="color:var(--white-op-50); font-size: 14px">to</small>
+
+				<span class="DESTINATIONCHAIN">DEST CHAIN</span>
+				<img id="imgDest" src='loading.png' style="width: 35px" alt="load">
+			</h4>
+        </div>
+      </xheader>
+
+
+		<!--tabs for clicked pages-->
+      <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a
+			class="nav-link active"
+			id="info-tab"
+			data-toggle="tab"
+			href="#info"
+			role="tab"
+			aria-controls="about"
+			aria-selected="true"
+		  >
+			  Info
+		  </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+			class="nav-link "
+			id="SEND-tab"
+			data-toggle="tab"
+			href="#SEND"
+			role="tab"
+			aria-controls="SEND"
+			aria-selected="false"
+		  >
+			  Send from
+			  <span class="SOURCECHAIN">SOURCE CHAIN</span>
+		  </a>
+		</li>
+
+        <li class="nav-item">
+          <a
+			class="nav-link "
+			id="CLAIM-tab"
+			data-toggle="tab"
+			href="#CLAIM"
+			role="tab"
+			aria-controls="CLAIM"
+			aria-selected="false"
+		  >
+			  Claim/Receive on
+			  <span class="DESTINATIONCHAIN">DEST CHAIN</span>
+		  </a>
+		</li>
+
+        <li class="nav-item">
+          <a
+			class="nav-link "
+			id="account-tab"
+			data-toggle="tab"
+			href="#account"
+			role="tab"
+			aria-controls="account"
+			aria-selected="true"
+		  >
+			  Your Transfer Fee Balance/Account
+		  </a>
+        </li>
+
+		<li class="nav-item">
+          <a
+			class="nav-link "
+			id="TRANSACTIONSTATUS-tab"
+			data-toggle="tab"
+			href="#TRANSACTIONSTATUS"
+			role="tab"
+			aria-controls="CLAIM"
+			aria-selected="false"
+		  >
+			  Transaction Status
+		  </a>
+		</li>
+
+      	<li class="nav-item">
+          <a
+			class="nav-link "
+			id="ADKCONVERT-tab"
+			data-toggle="tab"
+			href="#ADKCONVERT"
+			role="tab"
+			aria-controls="ADKCONVERT"
+			aria-selected="false"
+		  >
+			  Convert ADK/akADK
+		  </a>
+		</li>
+      </ul>
+
+      <div class="tab-content" id="myTabContent">
+		<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+          <section>
+                  <div class="card" style="border-radius: .3em">
+                    <div class="card-body">
+                      <h4 class="card-title fw-light">
+                        Aidos Kuneen Network &ndash; Binance Smart Chain Network Bridge
+                      </h4>
+                    	<ol>
+						<li>Choose Bridge Direction:
+							<ul>
+								<li><a href="?direction=TOBSC">Send Token from Aidos Kuneen to Binance Chain</a></li>
+								<li><a href="?direction=TOAIDOS">Send Token from Binance Chain to Aidos Kuneen</a></li>
+							</ul>
+						</li>
+						<li>Connect your MetaMask wallet (Use the blue connect button), and select either BSC or Aidos Network as your network.</li>
+						<li>Fund your <b>transfer fee balance</b> on the destination chain (this is to cover the GAS/token issue cost) - See tab "Your Transfer Fee Balance/Account".
+							<ul>
+								<li>If sending funds from Aidos Network to Binance Chain, you need to have at least 0.002 BNB transfer fee credits</li>
+								<li>If sending funds from Binance Chain to Aidos Network, you need to have at least 0.5 ADK transfer fee credits</li>
+							</ul>
+						</li>
+						<li>On the "Send From [...]" tab select the token you want to transfer cross-chain
+							<ul>
+								<li>If this is the first time you transfer a token, you will need to enable the token using the "Enable Token" button.</li>
+								<li>Enter the amount of token you want to transfer, and press the "Transfer Token" button.</li>
+								<li>If the transaction is successful, you will receive a transaction hash. Make note of that hash as you may need it later on to check the status of the transfer.</li>
+							</ul>
+						</li>
+						<li>Once you have transfered the token, the Milestone server will process the cross-chain transaction at the next Aidos Epoch Milestone (that is, about every 15-30 minutes at the moment).
+							<ul>
+								<li>You can check on the "Claim/Receive [...]" tab if your token are ready to be claimed (select your token from drop down)</li>
+								<li style="color:#942323;">Note: Your transaction will only be included if your FEE account on the <u>destination chain</u> holds at least the minimum transfer fee. If the fee balance is insufficient, the token <i>claim</i> will not become available <u>until the fee balance has been topped up.</u></li>
+							</ul>
+						</li>
+						</ol>
+
+						<h4 class="mt-5 fw-light">Supported Token</h4>
+						<hr/>
+						<ul>
+						<li><h4>Token on <b>Aidos Kuneen Network</b></h4>:
+							<ul>
+								<li>akBTL (Bitlocus) on Aidos Network: <b>0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4</b><br/><button class="tokenaddaidos btn-outline-warning btn btn-sm" id="token1A" tokendecimals="6" tokensymbol="akBTL" tokenaddress="0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4">Add Token</button></li>
+								<li>akUSDT (Binance-Peg BSC-USDT) on Aidos Network): <b>0xC40113f77c6cf69Eb558A703a663929EddEbC347</b><br/><button class="tokenaddaidos btn  btn-outline-info  btn-sm" id="token2A" tokendecimals="18" tokensymbol="akUSDT" tokenaddress="0xC40113f77c6cf69Eb558A703a663929EddEbC347">Add Token</button></li>
+								<li>akADK (Wrapped Aidos Kuneen aADK) on Aidos Network <span style="color:red">(*)</span>: <b>0x09549790741B565436Ef3942D832dF4D5570f6a2</b><br/><button class="tokenaddaidos btn btn-outline-primary btn-sm" id="token3A" tokendecimals="18" tokensymbol="akADK" tokenaddress="0x09549790741B565436Ef3942D832dF4D5570f6a2">Add Token</button></li>
+							</ul>
+						</li>
+						<hr/>
+						<li><h4>Equivalent Token on <b>Binance Smart Chain</b></h4>:
+							<ul>
+								<li>BTL (Bitlocus) on Binance Chain: <b>0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9</b><br/><button class="tokenaddbsc btn-outline-warning btn btn-sm" id="token1B" tokendecimals="6" tokensymbol="BTL" tokenaddress="0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9">Add Token</button></li>
+								<li>BSC-USDT (Binance-Peg BSC-USDT) on Binance Chain: <b>0x55d398326f99059fF775485246999027B3197955</b><br/><button class="tokenaddbsc  btn-outline-info btn btn-sm" id="token2B" tokendecimals="18" tokensymbol="USDT" tokenaddress="0x55d398326f99059fF775485246999027B3197955">Add Token</button></li>
+								<li>wADK (Wrapped Aidos Kuneen) on Binance Chain: <b>0x09549790741B565436Ef3942D832dF4D5570f6a2</b><br/><button class="tokenaddbsc btn btn-outline-primary btn-sm" id="token3B" tokendecimals="18" tokensymbol="wADK" tokenaddress="0x09549790741B565436Ef3942D832dF4D5570f6a2">Add Token</button></li>
+							</ul>
+						</li>
+						</ul>
+						<hr/>
+						<span style="color:#942323">(*)</span> <b>Note regarding akADK on Aidos Network</b>: As the token bridge only supports ERC20 token, in order to send ADK cross chain from Aidos Kuneen to Binance, you will need to convert ADK to akADK (wrapped ADK) token first. You can do so simply by sending ADK to the akADK contract address <b>0x09549790741B565436Ef3942D832dF4D5570f6a2</b><br/><br/>Once you have sent ADK to the wADKcontract address, you will receive the equivalent amount of akADK token credited to your account (which you can then transfer cross-chain to Binance chain).<br/><br/>
+						In order to convert akADK on Aidos Network back to ADK, simply send akADK to the akADK contract address 0x09549790741B565436Ef3942D832dF4D5570f6a2, and you will be credited the coresponding amount of ADK.
+                    </div>
+              </div>
+            </section>
+        </div> <!-- end about tab-->
+
+		<div class="tab-pane fade show" id="account" role="tabpanel" aria-labelledby="account-tab">
+          <section  class="HIDEIFMMMISSING" >
+			  <!-- -------- INVALID CHAIN --------->
+		      <div class="row d-flex justify-content-center" >
+                <div class="col-8 NOTDESTCHAIN WRONGCHAIN">
+                  <div class="card">
+                    <div class="card-body">
+                      <center>
+						  <h4 style="color:red" class="card-title">
+							This TAB requires you to be connected to <span class="DESTINATIONCHAIN">DEST CHAIN</span>
+						  </h4>
+						<div style="color:red">
+							<button class="btn connectdest btn-primary btn-small btn-block mb-3"
+									id="ChooseDestinationNetwork">Change Network</button>
+						</div>
+    				  </center>
+                    </div>
+                  </div>
+                </div>
+             </div>
+			 <!-- -------- END INVALID CHAIN --------->
+              <div class="row d-flex justify-content-center">
+                <div class="col-8 NOTSOURCECHAIN RIGHTCHAIN">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">
+                        <b>Your Transfer Fee Account Balance</b> on <span class="DESTINATIONCHAIN">DEST CHAIN</span>
+                      </h4>
+					  <h5>
+					     <hr/>
+					     <b>Transfer fee credits available for account: <span class="ACCOUNT1">0x0000000000000000000000000000000000000001</span></b>
+						 <hr/>
+					   </h5>
+					  <div class="form-group">
+						<div class="row">
+							<div class="col">
+								<label for="FeeCredit"><b>Your current <br/><span class="CUR1">CURRENCY</span> fee credits:</b></label>
+								<div class="input-group">
+									<input type="text" class="form-control" readonly id="FeeCredit" placeholder="0.0">
+									   <div class="input-group-append">
+										<span class="input-group-text CUR1">CURRENCY</span>
+									  </div>
+								</div>
+							</div>
+							<div class="col">
+								<label for="ADKFeeCredit">Current fee required to <b>RECEIVE</b> token on <span class="DESTINATIONCHAIN">DEST CHAIN</span> side (per transfer):</label>
+								<div class="input-group">
+									<input type="text" class="form-control" readonly id="FeeAmount1" placeholder="0.0">
+									   <div class="input-group-append">
+										<span class="input-group-text CUR1">CURRENCY</span>
+									  </div>
+								</div>
+							</div>
+						  </div>
+						</div>
+					</div>
+                  </div>
+                </div>
+              </div>
+			  <div class="row d-flex justify-content-center">
+                <div class="col-8 NOTSOURCECHAIN RIGHTCHAIN">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">
+                        How to top-up your <span class="CUR1">CURRENCY</span> Fee Account
+                      </h4>
+						<div class="row">
+					     	<!--div class="col">
+								<label for="feeTopUpAmount">Top Up Amount:</label>
+								<div class="input-group">
+									<input type="text" class="form-control" readonly id="feeTopUpAmount" placeholder="0.0">
+									   <div class="input-group-append">
+										<span class="input-group-text" class="CUR1">CURRENCY</span>
+									  </div>
+								</div>
+								 <button
+									class="btn btn-primary btn-block mb-3"
+									id="TopUpButton"
+									disabled
+								  >
+									Top Up
+								  </button>
+							</div-->
+                            <div class="col">
+							    <h5>You can top up your fee account by sending <span class="CUR1">CURRENCY</span> directly to the Bridge account <i><b>0x6B351E85596214c5E1a0Ec0131476774B1f47f18</b></i> <u>from the account you want to top up</u></h5><br/>The deposited fee funds will be credited instantly to your account once the deposit transaction has been mined on the target chain.
+								<br/><br/>
+								Note: Make sure you are topping up fees <b>ON THE CORRECT CHAIN</b>: <br/> &bull; If you want to <b>receive</b> token on the BSC side (i.e sending from AIDOS to BSC), you have to top up your <b>BNB Fee account on the Binance Smart Chain</b>. <br/> &bull; If you want to <b>receive</b> token on the AIDOS side (i.e sending from BSC to Aidos), you have to top up your <b>ADK Fee account on Aidos Network</b>.
+							</div>
+						</div>
+					  </div>
+                    </div>
+                  </div>
+                </div>
+            </section>
+
+        </div> <!-- end tab config-->
+
+        <div class="tab-pane fade show" id="SEND" role="tabpanel" aria-labelledby="SEND-tab">
+
+          <section  class="HIDEIFMMMISSING" >
+               <!-- -------- INVALID CHAIN --------->
+		      <div class="row d-flex justify-content-center" >
+                <div class="col-8 NOTSOURCECHAIN WRONGCHAIN">
+                  <div class="card">
+                    <div class="card-body">
+                      <center>
+						  <h4 style="color:red" class="card-title">
+							This TAB requires you to be connected to <span class="SOURCECHAIN">SOURCE CHAIN</span>
+						  </h4>
+						<div style="color:red">
+							<button class="connectsource btn btn-primary btn-small btn-block mb-3"
+									id="ChooseDestinationNetwork">Change Network</button>
+						</div>
+    				  </center>
+                    </div>
+                  </div>
+                </div>
+             </div>
+			 <!-- -------- END INVALID CHAIN --------->
+			 <div class="row d-flex justify-content-center"  >
+                <div class="col-8  NOTDESTCHAIN RIGHTCHAIN" >
+                  <div class="card">
+                    <div class="card-body">
+                      <center>
+							<h4 class="card-title">
+							Transfer Token:
+						  </h4>
+    						<div class="dropdown">
+							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownToken" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Select Token to Transfer
+							  </button>
+							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+								<!-- For Direction AIDOS to BSC -->
+
+								<a class="DCOIN TOBSC dropdown-item" id="dropdownTokenBTL"
+								       data-short="akBTL"
+									   data-decimals="6"
+									   data-gasprice="1000000000000"
+									   data-address="0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4"
+									   href="#">Bitlocus (akBTL) - 0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4</a>
+								<a class="DCOIN TOBSC dropdown-item" id="dropdownTokenBSCUSDT"
+								       data-short="akBSC-USDT"
+									   data-decimals="18"
+									   data-gasprice="1000000000000"
+									   data-address="0xC40113f77c6cf69Eb558A703a663929EddEbC347"
+									   href="#">Binance-Peg BSC-USDT(akUSDT) - 0xC40113f77c6cf69Eb558A703a663929EddEbC347</a>
+								<a class="DCOIN TOBSC dropdown-item" id="dropdownTokenWADK"
+								       data-short="akADK"
+									   data-decimals="18"
+									   data-gasprice="1000000000000"
+									   data-address="0x09549790741B565436Ef3942D832dF4D5570f6a2"
+									   href="#">Wrapped Aidos Kuneen akADK - 0x09549790741B565436Ef3942D832dF4D5570f6a2</a>
+
+								<!-- For Direction BSC to AIDOS-->
+
+								<a class="DCOIN TOAIDOS dropdown-item" id="dropdownTokenBTL_TOAIDOS"
+								       data-short="BTL"
+									   data-decimals="6"
+									   data-gasprice="-1"
+									   data-address="0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9"
+									   href="#"
+									   >Bitlocus (BTL on BSC) - 0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9</a>
+								<a class="DCOIN TOAIDOS dropdown-item" id="dropdownTokenBSCUSDT_TOAIDOS"
+								       data-short="BSC-USDT"
+									   data-decimals="18"
+									   data-gasprice="-1"
+									   data-address="0x55d398326f99059fF775485246999027B3197955"
+									   href="#"
+									   >Binance-Peg BSC-USDT(USDT) - 0x55d398326f99059fF775485246999027B3197955</a>
+								<a class="DCOIN TOAIDOS dropdown-item" id="dropdownTokenWADK_TOAIDOS"
+								       data-short="wADK"
+									   data-decimals="18"
+									   data-gasprice="-1"
+									   data-address="0x09549790741B565436Ef3942D832dF4D5570f6a2"
+									   href="#">Wrapped Aidos Kuneen wADK - 0x09549790741B565436Ef3942D832dF4D5570f6a2</a>
+
+							  </div>
+
+							</div>
+							<div>
+							    <hr/>
+								<h5>Selected Token: <b><span id="SelectedToken">None selected</span></b></h5>
+								<hr/>
+								<span id="SelectedTokenContract" style="display:none"/>
+							</div>
+						</center>
+						<div>
+						  <button
+							class="btn btn-primary btn-lg btn-block mb-3"
+							id="authorizeTokenButton"
+
+						  >
+							Enable <span class="TOKEN0">Token</span> on <span class="SOURCECHAIN">SOURCE CHAIN</span>
+						  </button>
+						</div>
+
+					  <div class="form-group">
+						<label for="amountToTransfer">Amount of <span class="TOKEN0">Token</span> to Transfer</label>
+						<div class="input-group">
+									<input type="text" class="form-control" id="amountToTransfer" placeholder="0.0">
+									   <div class="input-group-append">
+										<span class="input-group-text TOKEN0">TOKEN0</span>
+									  </div>
+							</div>
+					  </div>
+
+                      <button
+                        class="btn btn-primary btn-lg btn-block mb-3"
+                        id="transferTokenButton"
+                      >
+                        Transfer <span class="TOKEN0">Token</span> to <span class="DESTINATIONCHAIN">DEST CHAIN</span>
+                      </button>
+					  <hr/>
+					  <div id="trackingdiv">
+					     Your Transfer Transaction Hash (keep for tracking purposes): <b><span id="transferTransactionHash"></span></b>
+					  </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div> <!-- end tab BSCAidos-->
+
+
+
+	   <div class="tab-pane fade show" id="CLAIM" role="tabpanel" aria-labelledby="CLAIM-tab">
+
+          <section  class="HIDEIFMMMISSING" >
+               <!-- -------- INVALID CHAIN --------->
+		      <div class="row d-flex justify-content-center" >
+                <div class="col-8 NOTDESTCHAIN WRONGCHAIN">
+                  <div class="card">
+                    <div class="card-body">
+                      <center>
+						  <h4 style="color:red" class="card-title">
+							This TAB requires you to be connected to <span class="DESTINATIONCHAIN">DEST CHAIN</span>
+						  </h4>
+						<div style="color:red">
+							<button class="connectdest btn btn-primary btn-small btn-block mb-3"
+									id="ChooseDestinationNetwork">Change Network</button>
+						</div>
+    				  </center>
+                    </div>
+                  </div>
+                </div>
+             </div>
+			 <!-- -------- END INVALID CHAIN --------->
+			 <!---------  -->
+			 <div class="row d-flex justify-content-center"  >
+                <div class="col-8 NOTSOURCECHAIN RIGHTCHAIN" id="CLAIM-tabDIV-OK">
+                  <div class="card">
+                    <div class="card-body">
+                      <center>
+						  <h4 class="card-title">
+							Claim/Receive Transfered Token on <span class="DESTINATIONCHAIN">DEST CHAIN</span>
+						  </h4>
+    					  <div class="dropdown">
+							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAIDOSTokenClaim" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								Select Token to Claim
+							  </button>
+							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+							  <!-- For Direction BSC to AIDOS-->
+
+								<a class="DCOINCLAIM TOBSC dropdown-item" id="dropdownTokenBTLClaim"
+								       data-short="BTL"
+									   data-decimals="6"
+									   data-gasprice="-1"
+									   data-address="0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9"
+									   href="#"
+									   >Bitlocus (BTL on BSC) - 0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9</a>
+								<a class="DCOINCLAIM TOBSC dropdown-item" id="dropdownTokenBSCUSDClaim"
+								       data-short="BSC-USDT"
+									   data-decimals="18"
+									   data-gasprice="-1"
+									   data-address="0x55d398326f99059fF775485246999027B3197955"
+									   href="#"
+									   >Binance-Peg BSC-USDT(USDT) - 0x55d398326f99059fF775485246999027B3197955</a>
+								<a class="DCOINCLAIM TOBSC dropdown-item" id="dropdownTokenWADKClaim"
+								       data-short="wADK"
+									   data-decimals="18"
+									   data-gasprice="-1"
+									   data-address="0x09549790741B565436Ef3942D832dF4D5570f6a2"
+									   href="#">Wrapped Aidos Kuneen wADK - 0x09549790741B565436Ef3942D832dF4D5570f6a2</a>
+
+								<!-- For Direction AIDOS to BSC-->
+
+								<a class="DCOINCLAIM TOAIDOS dropdown-item" id="dropdownTokenBTLClaim_AIDOS"
+								       data-short="akBTL"
+									   data-decimals="6"
+									   data-gasprice="1000000000000"
+									   data-address="0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4"
+									   href="#">Bitlocus (akBTL) - 0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4</a>
+								<a class="DCOINCLAIM TOAIDOS dropdown-item" id="dropdownTokenBSCUSDTClaim_AIDOS"
+								       data-short="akBSC-USDT"
+									   data-decimals="18"
+									   data-gasprice="1000000000000"
+									   data-address="0xC40113f77c6cf69Eb558A703a663929EddEbC347"
+									   href="#">Binance-Peg BSC-USDT(akUSDT) - 0xC40113f77c6cf69Eb558A703a663929EddEbC347</a>
+								<a class="DCOINCLAIM TOAIDOS dropdown-item" id="dropdownTokenWADKClaim_AIDOS"
+								       data-short="aADK"
+									   data-decimals="18"
+									   data-gasprice="1000000000000"
+									   data-address="0x09549790741B565436Ef3942D832dF4D5570f6a2"
+									   href="#">Wrapped Aidos Kuneen akADK - 0x09549790741B565436Ef3942D832dF4D5570f6a2</a>
+
+							  </div>
+
+							</div>
+							<div>
+								<hr/>
+								<h5>Selected Token:<br/><b><span id="TokenClaim">None selected</span></b></h5>
+								<hr/>
+								<span id="TokenContractClaim" style="display:none"/>
+							</div>
+						</center>
+						<div>
+						  <div class="form-group">
+							<label for="amountToClaimAIDOS">Claimable Token</label>
+							<div class="input-group">
+									<input type="text" class="form-control" readonly id="amountToClaim" placeholder="0.0">
+									   <div class="input-group-append">
+										<span class="input-group-text TOKEN1">TOKEN1</span>
+									  </div>
+							</div>
+						  </div>
+						  <button
+							class="btn btn-primary btn-lg btn-block mb-3"
+							id="claimTokenButton"
+							disabled
+						  >
+							Claim <span class="TOKEN1">Token</span>
+						  </button>
+						</div>
+						<hr/>
+					    <div>
+						  <div class="form-group">
+							<label for="amountToClaimBSC">Available Transfer Fee Credits (<span class="CUR1">CURRENCY</span>):</label>
+							<div class="input-group">
+									<input type="text" class="form-control" readonly id="feeBalanceForClaim" placeholder="0.0">
+									   <div class="input-group-append">
+										<span class="input-group-text CUR1">CURRENCY</span>
+									  </div>
+							</div>
+						  </div>
+						  <div>
+						     Required Fee Balance: <span id="RequiredFEE"/> <span class="CUR1">CURRENCY</span>
+							 <br/>&nbsp;
+						  </div>
+						</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+
+          </div> <!-- end tab BSCAidos Claim-->
+
+
+		  <!-- end tab BSC Token Claim-->
+
+		  <!--- BEGIN Stansaction Status -->
+
+	   <div class="tab-pane fade show" id="TRANSACTIONSTATUS" role="tabpanel" aria-labelledby="TRANSACTIONSTATUS-tab">
+
+          <section  class="HIDEIFMMMISSING" >
+               <!-- -------- INVALID CHAIN --------->
+		      <div class="row d-flex justify-content-center" >
+                <div class="col-8 NOTAIDOS WRONGCHAIN">
+                  <div class="card">
+                    <div class="card-body">
+                      <center>
+						  <h4 style="color:red" class="card-title">
+							This TAB requires you to be connected to Aidos Network <br/>
+							(Transaction status for all transactions (both ways) is kept on the Aidos Network)
+						  </h4>
+						<div style="color:red">
+							<button class="connectaidos btn btn-primary btn-small btn-block mb-3"
+									id="ChooseAidosNetwork">Change Network</button>
+						</div>
+    				  </center>
+                    </div>
+                  </div>
+                </div>
+             </div>
+			 <!-- -------- END INVALID CHAIN --------->
+			 <!---------  -->
+			 <div class="row d-flex justify-content-center"  >
+                <div class="col-8 ITSAIDOS RIGHTCHAIN">
+                  <div class="card">
+                    <div class="card-body">
+                      <center>
+						  <h4 class="card-title">
+							Query Transfer Transaction Status
+						  </h4>
+
+						</center>
+						<div>
+						  <div class="form-group">
+							<label for="transactionHashQuery">Transaction Hash of Transfer Transaction (on BSC or AIDOS Network):</label>
+							<div class="input-group">
+									<input type="text" class="form-control" id="transactionHashQuery" placeholder="0x123456[...]">
+							</div>
+						  </div>
+						  <button
+							class="btn btn-primary btn-lg btn-block mb-3"
+							id="queryStatus"
+
+						  >
+							Query Transfer Transaction Status
+						  </button>
+						</div>
+						<hr/>
+					    <div>
+						   Transaction: <span id="transactionId_result"> </span><br/>
+						   Status: <b><span id="transactionId_status"> </span></b>
+						   <br/>
+						   <br/>
+						   <u>Status Description:</u><br/>
+						   <ul><li>TRANSACTION_NOT_SEEN : Transaction has not yet been picked up by the bridge (wait for epoch end, and/or check transaction hash)</li>
+						   <li>TRANSACTION_PENDING : Transaction has been picked up and is being processed</li>
+						   <li>TOKEN_ISSUE_PENDING : Transaction has been processed on source chain, and token on destination chain are about to be issued</li>
+						   <li>TOKEN_CLAIM_AUTHORIZED : Transaction has been processed and is ready for claiming. (final status)</li>
+
+						   <li>INSUFFICIENT_FEE_BALANCE : Transaction has been seen, but not processed due to insufficient fee funds at destination side of bridge</li>
+						   <li>ZERO_AMOUNT : Transfer request was for 0 Token (thus cancelled)</li>
+						   </ul>
+						</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+
+          </div> <!-- end tab BSCAidos Claim-->
+
+
+	     <!--        CONVERT ADK/wADK Tab -->
+
+		        <div class="tab-pane fade show" id="ADKCONVERT" role="tabpanel" aria-labelledby="ADKCONVERT-tab">
+
+          <section  class="HIDEIFMMMISSING" >
+               <!-- -------- INVALID CHAIN --------->
+		      <div class="row d-flex justify-content-center" >
+                <div class="col-8 NOTAIDOS WRONGCHAIN">
+                  <div class="card">
+                    <div class="card-body">
+                      <center>
+						  <h4 style="color:red" class="card-title">
+							This TAB requires you to be connected to Aidos Network
+						  </h4>
+						<div style="color:red">
+							<button class="connectaidos btn btn-primary btn-small btn-block mb-3"
+									id="ChooseAidosNetwork2">Change Network</button>
+						</div>
+    				  </center>
+                    </div>
+                  </div>
+                </div>
+             </div>
+			 <!-- -------- END INVALID CHAIN --------->
+			 <div class="row d-flex justify-content-center"  >
+                <div class="col-8  ITSAIDOS RIGHTCHAIN" >
+                  <div class="card">
+                    <div class="card-body">
+                      <center>
+						<h3 class="card-title">
+							ADK / akADK Conversion Tool (on Aidos Network)
+						</h3>
+						You can use below tools to easily convert native ADK to ERC20 akADK and vice versa. (1:1 conversion, two-way):
+
+						</center>
+					</div>
+				  </div>
+
+				  <div class="row justify-content-center">
+					  <div class="col-6">
+
+							  <div class="card">
+								<div class="card-body">
+								  <center>
+									<h4>
+										Convert ADK to akADK Token:
+									</h4>
+									<div class="form-group">
+									<label for="amountToTransfer">Amount of native ADK to convert to akADK Token</label>
+									<div class="input-group">
+												<input type="text" class="form-control" id="amountToConvertADK2WADK" placeholder="0.0">
+												   <div class="input-group-append">
+													<span class="input-group-text">ADK (convert to akADK)</span>
+												  </div>
+									 </div>
+								  </div>
+
+								  <button class="btn btn-primary btn-lg btn-block mb-3"  id="convertToWADK" >Convert ADK to akADK </button>
+								  </center>
+								</div>
+							</div>
+					   </div>
+					   <div class="col-6">
+							<div class="card">
+								<div class="card-body">
+								  <center>
+								  <h4>
+										Convert akADK Token to ADK:
+									</h4>
+								  <div class="form-group">
+									<label for="amountToTransfer">Amount of akADK Token to convert to native ADK</label>
+									<div class="input-group">
+												<input type="text" class="form-control" id="amountToConvertWADK2ADK" placeholder="0.0">
+												   <div class="input-group-append">
+													<span class="input-group-text">akADK (convert to ADK)</span>
+												  </div>
+									 </div>
+								  </div>
+
+								  <button
+									class="btn btn-info btn-lg btn-block mb-3"
+									id="convertToADK"
+								  >
+									Convert akADK to ADK
+								  </button>
+								  </center>
+								</div>
+							  </div>
+						  </div>
+					</div>
+                </div>
+              </div>
+            </section>
+
+          </div> <!-- end tab BSCAidos-->
+
+	  </div><!-- end myTabContent -->
+    </main>
+
+	<!--our script libs-->
+	<script src="scripts/modal-connected.js"></script>
+	<script>
+		function findGetParameter(parameterName) {
+			var result = null,
+				tmp = [];
+			location.search
+				.substr(1)
+				.split("&")
+				.forEach(function (item) {
+				  tmp = item.split("=");
+				  if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+				});
+			return result;
+		}
+		window.transfer_direction=findGetParameter("direction");
+		if (window.transfer_direction==null)
+			window.transfer_direction="TOBSC"
+	</script>
+    <script src="bundle.js" defer></script>
+  </body>
+</html>

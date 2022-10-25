@@ -1,0 +1,29 @@
+#modal-connect{
+    display: none;
+}
+.modal-connected{
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    background: var(--dropdown);
+    width: 20em;
+    padding: 2em 1em;
+    border-radius: .5em;
+}
+
+.modal-connected .container-text{
+    background: var(--white-op-10);
+    padding: .8em;
+    border-radius: .3em;
+    margin-bottom: 1em;
+    color: var(--white-op-50);
+    font-size: 14px;
+    font-weight: 300;
+}
+.modal-connected .container-text{
+    overflow: hidden;
+}
+.modal-connected .container-text span{
+    font-weight: 500;
+    color: white;
+}

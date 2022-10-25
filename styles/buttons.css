@@ -1,0 +1,33 @@
+/*blue button*/
+.blue-but{
+    background: var(--but-blue);
+    color: var(--white);
+    padding: .3em 1.5em;
+    border-radius: .4em;
+    font-weight: 300;
+    transition: .3s;
+    border:none;
+    outline: none;
+}
+.blue-but:disabled{
+    opacity: .5;
+    cursor: not-allowed;
+}
+.blue-but:hover{
+    background: var(--but-blue-hover);
+}
+
+/*close button without x*/
+.close-but-text{
+    background: var(--close);
+    color: var(--white);
+    padding: .3em 1.5em;
+    border-radius: .4em;
+    font-weight: 300;
+    transition: .3s;
+    border:none;
+    outline: none;
+}
+.close-but-text:hover{
+    background: var(--close-hover);
+}
