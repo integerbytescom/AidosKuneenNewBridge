@@ -196,7 +196,7 @@
 		</li>
       </ul>
 
-      <div class="tab-content" id="myTabContent">
+      <div class="tab-content pb-5" id="myTabContent">
 		<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
           <section>
                   <div class="card" style="border-radius: .3em">
@@ -322,15 +322,15 @@
           <section  class="HIDEIFMMMISSING" >
 			  <!-- -------- INVALID CHAIN --------->
 		      <div class="row d-flex justify-content-center" >
-                <div class="col-8 NOTDESTCHAIN WRONGCHAIN">
+                <div class="NOTDESTCHAIN WRONGCHAIN">
                   <div class="card">
                     <div class="card-body">
                       <center>
-						  <h4 style="color:red" class="card-title">
+						  <h4 class="card-title fw-light">
 							This TAB requires you to be connected to <span class="DESTINATIONCHAIN">DEST CHAIN</span>
 						  </h4>
-						<div style="color:red">
-							<button class="btn connectdest btn-primary btn-small btn-block mb-3"
+						<div>
+							<button class="blue-but connectdest btn-block mb-3"
 									id="ChooseDestinationNetwork">Change Network</button>
 						</div>
     				  </center>
@@ -340,7 +340,7 @@
              </div>
 			 <!-- -------- END INVALID CHAIN --------->
               <div class="row d-flex justify-content-center">
-                <div class="col-8 NOTSOURCECHAIN RIGHTCHAIN">
+                <div class="NOTSOURCECHAIN RIGHTCHAIN">
                   <div class="card">
                     <div class="card-body">
                       <h4 class="card-title">
@@ -378,7 +378,7 @@
                 </div>
               </div>
 			  <div class="row d-flex justify-content-center">
-                <div class="col-8 NOTSOURCECHAIN RIGHTCHAIN">
+                <div class="NOTSOURCECHAIN RIGHTCHAIN">
                   <div class="card">
                     <div class="card-body">
                       <h4 class="card-title">
@@ -420,15 +420,15 @@
           <section  class="HIDEIFMMMISSING" >
                <!-- -------- INVALID CHAIN --------->
 		      <div class="row d-flex justify-content-center" >
-                <div class="col-8 NOTSOURCECHAIN WRONGCHAIN">
+                <div class="NOTSOURCECHAIN WRONGCHAIN">
                   <div class="card">
                     <div class="card-body">
                       <center>
-						  <h4 style="color:red" class="card-title">
+						  <h4 class="card-title fw-light">
 							This TAB requires you to be connected to <span class="SOURCECHAIN">SOURCE CHAIN</span>
 						  </h4>
-						<div style="color:red">
-							<button class="connectsource btn btn-primary btn-small btn-block mb-3"
+						<div>
+							<button class="connectsource blue-but btn-block mb-3"
 									id="ChooseDestinationNetwork">Change Network</button>
 						</div>
     				  </center>
@@ -524,9 +524,9 @@
 							to Transfer
 						</label>
 
-						<div class="input-group w-50 my-4">
+						<div class="input-group d-flex w-50 my-4">
 							<input type="text" class="default" id="amountToTransfer" placeholder="0.0">
-							<span style="font-size: 13px;" class="inp-def-right TOKEN0">TOKEN0</span>
+							<span style="border-radius: .25em" class="inp-def-right mx-1 TOKEN0">TOKEN0</span>
 						</div>
 					  </div>
 
@@ -555,15 +555,15 @@
           <section  class="HIDEIFMMMISSING" >
                <!-- -------- INVALID CHAIN --------->
 		      <div class="row d-flex justify-content-center" >
-                <div class="col-8 NOTDESTCHAIN WRONGCHAIN">
+                <div class="NOTDESTCHAIN WRONGCHAIN">
                   <div class="card">
                     <div class="card-body">
                       <center>
-						  <h4 style="color:red" class="card-title">
+						  <h4 class="card-title fw-light">
 							This TAB requires you to be connected to <span class="DESTINATIONCHAIN">DEST CHAIN</span>
 						  </h4>
-						<div style="color:red">
-							<button class="connectdest btn btn-primary btn-small btn-block mb-3"
+						<div>
+							<button class="connectdest blue-but btn-block mb-3"
 									id="ChooseDestinationNetwork">Change Network</button>
 						</div>
     				  </center>
@@ -574,7 +574,7 @@
 			 <!-- -------- END INVALID CHAIN --------->
 			 <!---------  -->
 			 <div class="row d-flex justify-content-center"  >
-                <div class="col-8 NOTSOURCECHAIN RIGHTCHAIN" id="CLAIM-tabDIV-OK">
+                <div class="NOTSOURCECHAIN RIGHTCHAIN" id="CLAIM-tabDIV-OK">
                   <div class="card">
                     <div class="card-body">
                       <center>
@@ -695,16 +695,16 @@
           <section  class="HIDEIFMMMISSING" >
                <!-- -------- INVALID CHAIN --------->
 		      <div class="row d-flex justify-content-center" >
-                <div class="col-8 NOTAIDOS WRONGCHAIN">
+                <div class="NOTAIDOS WRONGCHAIN">
                   <div class="card">
                     <div class="card-body">
                       <center>
-						  <h4 style="color:red" class="card-title">
+						  <h4 class="card-title fw-light">
 							This TAB requires you to be connected to Aidos Network <br/>
 							(Transaction status for all transactions (both ways) is kept on the Aidos Network)
 						  </h4>
-						<div style="color:red">
-							<button class="connectaidos btn btn-primary btn-small btn-block mb-3"
+						<div >
+							<button class="connectaidos blue-but btn-block mb-3"
 									id="ChooseAidosNetwork">Change Network</button>
 						</div>
     				  </center>
@@ -715,29 +715,26 @@
 			 <!-- -------- END INVALID CHAIN --------->
 			 <!---------  -->
 			 <div class="row d-flex justify-content-center"  >
-                <div class="col-8 ITSAIDOS RIGHTCHAIN">
+                <div class="ITSAIDOS RIGHTCHAIN">
                   <div class="card">
                     <div class="card-body">
                       <center>
-						  <h4 class="card-title">
+						<h4 class="card-title fw-light mb-4">
 							Query Transfer Transaction Status
-						  </h4>
+						</h4>
 
 						</center>
 						<div>
 						  <div class="form-group">
 							<label for="transactionHashQuery">Transaction Hash of Transfer Transaction (on BSC or AIDOS Network):</label>
-							<div class="input-group">
-									<input type="text" class="form-control" id="transactionHashQuery" placeholder="0x123456[...]">
+							<div class="input-group d-flex align-items-end">
+								<input type="text" class="default w-50 my-3" id="transactionHashQuery" placeholder="0x123456[...]">
+
+								<button class="blue-but btn-block mb-3" style="max-height: 37px;" id="queryStatus">
+									Query Transfer Transaction Status
+								</button>
 							</div>
 						  </div>
-						  <button
-							class="btn btn-primary btn-lg btn-block mb-3"
-							id="queryStatus"
-
-						  >
-							Query Transfer Transaction Status
-						  </button>
 						</div>
 						<hr/>
 					    <div>
@@ -746,13 +743,14 @@
 						   <br/>
 						   <br/>
 						   <u>Status Description:</u><br/>
-						   <ul><li>TRANSACTION_NOT_SEEN : Transaction has not yet been picked up by the bridge (wait for epoch end, and/or check transaction hash)</li>
-						   <li>TRANSACTION_PENDING : Transaction has been picked up and is being processed</li>
-						   <li>TOKEN_ISSUE_PENDING : Transaction has been processed on source chain, and token on destination chain are about to be issued</li>
-						   <li>TOKEN_CLAIM_AUTHORIZED : Transaction has been processed and is ready for claiming. (final status)</li>
+						   <ul>
+							   	<li>TRANSACTION_NOT_SEEN : Transaction has not yet been picked up by the bridge (wait for epoch end, and/or check transaction hash)</li>
+						   		<li>TRANSACTION_PENDING : Transaction has been picked up and is being processed</li>
+						   		<li>TOKEN_ISSUE_PENDING : Transaction has been processed on source chain, and token on destination chain are about to be issued</li>
+						   		<li>TOKEN_CLAIM_AUTHORIZED : Transaction has been processed and is ready for claiming. (final status)</li>
 
-						   <li>INSUFFICIENT_FEE_BALANCE : Transaction has been seen, but not processed due to insufficient fee funds at destination side of bridge</li>
-						   <li>ZERO_AMOUNT : Transfer request was for 0 Token (thus cancelled)</li>
+						   		<li>INSUFFICIENT_FEE_BALANCE : Transaction has been seen, but not processed due to insufficient fee funds at destination side of bridge</li>
+						   		<li>ZERO_AMOUNT : Transfer request was for 0 Token (thus cancelled)</li>
 						   </ul>
 						</div>
                     </div>
@@ -773,15 +771,15 @@
           <section  class="HIDEIFMMMISSING" >
                <!-- -------- INVALID CHAIN --------->
 		      <div class="row d-flex justify-content-center" >
-                <div class="col-8 NOTAIDOS WRONGCHAIN">
+                <div class="NOTAIDOS WRONGCHAIN">
                   <div class="card">
                     <div class="card-body">
                       <center>
-						  <h4 style="color:red" class="card-title">
+						  <h4 class="card-title fw-light">
 							This TAB requires you to be connected to Aidos Network
 						  </h4>
-						<div style="color:red">
-							<button class="connectaidos btn btn-primary btn-small btn-block mb-3"
+						<div>
+							<button class="connectaidos blue-but btn-block mb-3"
 									id="ChooseAidosNetwork2">Change Network</button>
 						</div>
     				  </center>
@@ -791,68 +789,70 @@
              </div>
 			 <!-- -------- END INVALID CHAIN --------->
 			 <div class="row d-flex justify-content-center"  >
-                <div class="col-8  ITSAIDOS RIGHTCHAIN" >
-                  <div class="card">
+                <div class="ITSAIDOS RIGHTCHAIN" >
+                  <div class="card" style="border-radius: 0">
                     <div class="card-body">
                       <center>
-						<h3 class="card-title">
+						<h4 class="card-title fw-light">
 							ADK / akADK Conversion Tool (on Aidos Network)
-						</h3>
-						You can use below tools to easily convert native ADK to ERC20 akADK and vice versa. (1:1 conversion, two-way):
+						</h4>
+						<p class="w-100 fw-light text-center">
+							You can use below tools to easily convert native ADK to
+							ERC20 akADK and vice versa. (1:1 conversion, two-way):
+						</p>
 
 						</center>
 					</div>
+					  <hr class="w-25 mx-auto" />
 				  </div>
 
-				  <div class="row justify-content-center">
-					  <div class="col-6">
+				  <div class="d-flex">
+					  <div class="w-50" style="border-radius: 0">
 
-							  <div class="card">
-								<div class="card-body">
-								  <center>
+							  <div class="card" style="border-radius: 0">
+								  <center class="mx-5">
 									<h4>
 										Convert ADK to akADK Token:
 									</h4>
 									<div class="form-group">
 									<label for="amountToTransfer">Amount of native ADK to convert to akADK Token</label>
-									<div class="input-group">
-												<input type="text" class="form-control" id="amountToConvertADK2WADK" placeholder="0.0">
-												   <div class="input-group-append">
-													<span class="input-group-text">ADK (convert to akADK)</span>
-												  </div>
-									 </div>
+										<input type="text" class="default w-100 my-5" id="amountToConvertADK2WADK" placeholder="0.0">
+<!--									<div class="input-group my-4 d-flex justify-content-center">-->
+<!--										<input type="text" class="default w-50" id="amountToConvertADK2WADK" placeholder="0.0">-->
+<!--										<div class="input-group-append">-->
+<!--											<span class="inp-def-right">ADK (convert to akADK)</span>-->
+<!--										</div>-->
+<!--									 </div>-->
 								  </div>
 
-								  <button class="btn btn-primary btn-lg btn-block mb-3"  id="convertToWADK" >Convert ADK to akADK </button>
+								  <button class="blue-but btn-block mb-3"  id="convertToWADK" >Convert ADK to akADK </button>
 								  </center>
-								</div>
 							</div>
 					   </div>
-					   <div class="col-6">
-							<div class="card">
-								<div class="card-body">
-								  <center>
+					   <div class="w-50" style="border-radius: 0">
+							<div class="card" style="border-radius: 0">
+								  <center class="mx-5">
 								  <h4>
 										Convert akADK Token to ADK:
 									</h4>
 								  <div class="form-group">
 									<label for="amountToTransfer">Amount of akADK Token to convert to native ADK</label>
-									<div class="input-group">
-												<input type="text" class="form-control" id="amountToConvertWADK2ADK" placeholder="0.0">
-												   <div class="input-group-append">
-													<span class="input-group-text">akADK (convert to ADK)</span>
-												  </div>
-									 </div>
+									  <input type="text" class="default w-100 my-5" id="amountToConvertWADK2ADK" placeholder="0.0">
+<!--									<div class="input-group my-4 d-flex justify-content-center">-->
+<!--										<input type="text" class="default" id="amountToConvertWADK2ADK" placeholder="0.0">-->
+<!--										<div class="input-group-append">-->
+<!--											<span class="inp-def-right">akADK (convert to ADK)</span>-->
+<!--										</div>-->
+<!--									 </div>-->
 								  </div>
 
 								  <button
-									class="btn btn-info btn-lg btn-block mb-3"
+									class="blue-but btn-block mb-3"
 									id="convertToADK"
 								  >
 									Convert akADK to ADK
 								  </button>
 								  </center>
-								</div>
 							  </div>
 						  </div>
 					</div>

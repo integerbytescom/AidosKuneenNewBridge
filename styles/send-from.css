@@ -1,3 +1,6 @@
+.dropdown.send .dropdown-menu{
+    margin-top: 5px;
+}
 .dropdown.send .dropdown-menu,
 .dropdown.send .dropdown-item{
     background: #1C1E2D;

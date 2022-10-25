@@ -405,17 +405,17 @@
 </linearGradient>
 <linearGradient id="paint61_linear_111_14" x1="435.425" y1="549" x2="435.425" y2="600" gradientUnits="userSpaceOnUse">
 <stop stop-color="#32344B"/>
-<stop offset="0.307292" stop-color="#282941"/>
+    <stop offset="0.307292" stop-color="#282941"/>
 <stop offset="1" stop-color="#434566"/>
 </linearGradient>
-<linearGradient id="paint62_linear_111_14" x1="737" y1="688" x2="1321.99" y2="691.612" gradientUnits="userSpaceOnUse">
-<stop stop-color="#181928" stop-opacity="0"/>
-<stop offset="0.333333" stop-color="#181928"/>
-<stop offset="1" stop-color="#181928"/>
-</linearGradient>
+    <linearGradient id="paint62_linear_111_14" x1="737" y1="688" x2="1321.99" y2="691.612" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#181928" stop-opacity="0"/>
+        <stop offset="0.333333" stop-color="#181928"/>
+        <stop offset="1" stop-color="#181928"/>
+    </linearGradient>
 <linearGradient id="paint63_linear_111_14" x1="1164.5" y1="694.509" x2="1164.5" y2="1117" gradientUnits="userSpaceOnUse">
 <stop stop-color="#151620"/>
-<stop offset="1" stop-color="#181928"/>
+<stop offset="1" stop-color="#151620"/>
 </linearGradient>
 </defs>
 </svg>
