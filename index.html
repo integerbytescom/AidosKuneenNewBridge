@@ -20,6 +20,8 @@
 	<link rel="stylesheet" href="styles/buttons.css" type="text/css" />
 	<link rel="stylesheet" href="styles/modal-connected.css" type="text/css" />
 	  <link rel="stylesheet" href="styles/navtab.css" type="text/css" />
+	  <link rel="stylesheet" href="styles/send-from.css" type="text/css" />
+	  <link rel="stylesheet" href="styles/inputs.css" type="text/css" />
 
 	<!--other script libs-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -226,33 +228,91 @@
 						<li>Once you have transfered the token, the Milestone server will process the cross-chain transaction at the next Aidos Epoch Milestone (that is, about every 15-30 minutes at the moment).
 							<ul>
 								<li>You can check on the "Claim/Receive [...]" tab if your token are ready to be claimed (select your token from drop down)</li>
-								<li style="color:#942323;">Note: Your transaction will only be included if your FEE account on the <u>destination chain</u> holds at least the minimum transfer fee. If the fee balance is insufficient, the token <i>claim</i> will not become available <u>until the fee balance has been topped up.</u></li>
+								<li>Note: Your transaction will only be included if your FEE account on the <u>destination chain</u> holds at least the minimum transfer fee. If the fee balance is insufficient, the token <i>claim</i> will not become available <u>until the fee balance has been topped up.</u></li>
 							</ul>
 						</li>
 						</ol>
 
 						<h4 class="mt-5 fw-light">Supported Token</h4>
 						<hr/>
-						<ul>
-						<li><h4>Token on <b>Aidos Kuneen Network</b></h4>:
-							<ul>
-								<li>akBTL (Bitlocus) on Aidos Network: <b>0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4</b><br/><button class="tokenaddaidos btn-outline-warning btn btn-sm" id="token1A" tokendecimals="6" tokensymbol="akBTL" tokenaddress="0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4">Add Token</button></li>
-								<li>akUSDT (Binance-Peg BSC-USDT) on Aidos Network): <b>0xC40113f77c6cf69Eb558A703a663929EddEbC347</b><br/><button class="tokenaddaidos btn  btn-outline-info  btn-sm" id="token2A" tokendecimals="18" tokensymbol="akUSDT" tokenaddress="0xC40113f77c6cf69Eb558A703a663929EddEbC347">Add Token</button></li>
-								<li>akADK (Wrapped Aidos Kuneen aADK) on Aidos Network <span style="color:red">(*)</span>: <b>0x09549790741B565436Ef3942D832dF4D5570f6a2</b><br/><button class="tokenaddaidos btn btn-outline-primary btn-sm" id="token3A" tokendecimals="18" tokensymbol="akADK" tokenaddress="0x09549790741B565436Ef3942D832dF4D5570f6a2">Add Token</button></li>
+						<ul class="sup-token-ul">
+						<li><h4>Token on <b>Aidos Kuneen Network:</b></h4>
+							<br />
+							<ul class="sup-token-ul">
+								<li>
+									akBTL (Bitlocus) on Aidos Network:
+									<b>0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4</b>
+									<br/>
+									<button class="tokenaddaidos blue-but py-2 px-5" id="token1A" tokendecimals="6" tokensymbol="akBTL" tokenaddress="0x62AC3C41AD0E2eCC4681fD21596415501BEc3cC4">Add Token</button>
+								</li>
+
+								<hr style="width: 50%; opacity: 0.05;" />
+
+								<li>
+									akUSDT (Binance-Peg BSC-USDT) on Aidos Network):
+									<b>0xC40113f77c6cf69Eb558A703a663929EddEbC347</b>
+									<br/>
+									<button class="tokenaddaidos blue-but py-2 px-5" id="token2A" tokendecimals="18" tokensymbol="akUSDT" tokenaddress="0xC40113f77c6cf69Eb558A703a663929EddEbC347">Add Token</button>
+								</li>
+
+								<hr style="width: 50%; opacity: 0.05;" />
+
+								<li>
+									akADK (Wrapped Aidos Kuneen aADK) on Aidos Network
+									<span style="color:red">(*)</span>:
+									<b>0x09549790741B565436Ef3942D832dF4D5570f6a2</b>
+									<br/>
+									<button class="tokenaddaidos blue-but py-2 px-5" id="token3A" tokendecimals="18" tokensymbol="akADK" tokenaddress="0x09549790741B565436Ef3942D832dF4D5570f6a2">Add Token</button>
+								</li>
 							</ul>
 						</li>
 						<hr/>
-						<li><h4>Equivalent Token on <b>Binance Smart Chain</b></h4>:
-							<ul>
-								<li>BTL (Bitlocus) on Binance Chain: <b>0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9</b><br/><button class="tokenaddbsc btn-outline-warning btn btn-sm" id="token1B" tokendecimals="6" tokensymbol="BTL" tokenaddress="0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9">Add Token</button></li>
-								<li>BSC-USDT (Binance-Peg BSC-USDT) on Binance Chain: <b>0x55d398326f99059fF775485246999027B3197955</b><br/><button class="tokenaddbsc  btn-outline-info btn btn-sm" id="token2B" tokendecimals="18" tokensymbol="USDT" tokenaddress="0x55d398326f99059fF775485246999027B3197955">Add Token</button></li>
-								<li>wADK (Wrapped Aidos Kuneen) on Binance Chain: <b>0x09549790741B565436Ef3942D832dF4D5570f6a2</b><br/><button class="tokenaddbsc btn btn-outline-primary btn-sm" id="token3B" tokendecimals="18" tokensymbol="wADK" tokenaddress="0x09549790741B565436Ef3942D832dF4D5570f6a2">Add Token</button></li>
+						<li><h4>Equivalent Token on <b>Binance Smart Chain:</b></h4>
+							<ul class="sup-token-ul">
+								<li>
+									BTL (Bitlocus) on Binance Chain:
+									<b>0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9</b>
+									<br/>
+									<button class="tokenaddbsc blue-but py-2 px-5" id="token1B" tokendecimals="6" tokensymbol="BTL" tokenaddress="0x51e7B598C9155b9DCcB04Eb42519F6EeC9C841e9">Add Token</button>
+								</li>
+
+								<hr style="width: 50%; opacity: 0.05;" />
+
+								<li>
+									BSC-USDT (Binance-Peg BSC-USDT) on Binance Chain:
+									<b>0x55d398326f99059fF775485246999027B3197955</b>
+									<br/>
+									<button class="tokenaddbsc blue-but py-2 px-5" id="token2B" tokendecimals="18" tokensymbol="USDT" tokenaddress="0x55d398326f99059fF775485246999027B3197955">Add Token</button>
+								</li>
+
+								<hr style="width: 50%; opacity: 0.05;" />
+
+								<li>
+									wADK (Wrapped Aidos Kuneen) on Binance Chain:
+									<b>0x09549790741B565436Ef3942D832dF4D5570f6a2</b>
+									<br/>
+									<button class="tokenaddbsc blue-but py-2 px-5" id="token3B" tokendecimals="18" tokensymbol="wADK" tokenaddress="0x09549790741B565436Ef3942D832dF4D5570f6a2">Add Token</button>
+								</li>
 							</ul>
 						</li>
 						</ul>
 						<hr/>
-						<span style="color:#942323">(*)</span> <b>Note regarding akADK on Aidos Network</b>: As the token bridge only supports ERC20 token, in order to send ADK cross chain from Aidos Kuneen to Binance, you will need to convert ADK to akADK (wrapped ADK) token first. You can do so simply by sending ADK to the akADK contract address <b>0x09549790741B565436Ef3942D832dF4D5570f6a2</b><br/><br/>Once you have sent ADK to the wADKcontract address, you will receive the equivalent amount of akADK token credited to your account (which you can then transfer cross-chain to Binance chain).<br/><br/>
-						In order to convert akADK on Aidos Network back to ADK, simply send akADK to the akADK contract address 0x09549790741B565436Ef3942D832dF4D5570f6a2, and you will be credited the coresponding amount of ADK.
+						<p class="footer-tab-text">
+							<b>*Note regarding akADK on Aidos Network</b>:
+							As the token bridge only supports ERC20 token, in order to send
+							ADK cross chain from Aidos Kuneen to Binance, you will need to
+							convert ADK to akADK (wrapped ADK) token first. You can do so simply
+							by sending ADK to the akADK contract address
+							<b>0x09549790741B565436Ef3942D832dF4D5570f6a2</b>
+							<br/><br/>
+							Once you have sent ADK to the wADKcontract address, you will receive
+							the equivalent amount of akADK token credited to your account (which
+							you can then transfer cross-chain to Binance chain).
+							<br/><br/>
+							In order to convert akADK on Aidos Network back to ADK, simply send akADK
+							to the akADK contract address 0x09549790741B565436Ef3942D832dF4D5570f6a2,
+							and you will be credited the coresponding amount of ADK.
+						</p>
                     </div>
               </div>
             </section>
@@ -378,17 +438,19 @@
              </div>
 			 <!-- -------- END INVALID CHAIN --------->
 			 <div class="row d-flex justify-content-center"  >
-                <div class="col-8  NOTDESTCHAIN RIGHTCHAIN" >
+                <div class="NOTDESTCHAIN RIGHTCHAIN" >
                   <div class="card">
                     <div class="card-body">
-                      <center>
-							<h4 class="card-title">
-							Transfer Token:
-						  </h4>
-    						<div class="dropdown">
-							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownToken" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<!--<h6 class="card-title">-->
+						<!--Transfer Token:-->
+						<!--</h6>-->
+    						<div class="dropdown send">
+								<!--dropdown button-->
+							  <button class="btn btn-sm dropdown-toggle blue-but" type="button" id="dropdownToken" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Select Token to Transfer
 							  </button>
+
+								<!--dropdown menu-->
 							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
 								<!-- For Direction AIDOS to BSC -->
@@ -440,33 +502,36 @@
 							</div>
 							<div>
 							    <hr/>
-								<h5>Selected Token: <b><span id="SelectedToken">None selected</span></b></h5>
+								<p>Selected Token: <b><span id="SelectedToken">None selected</span></b></p>
 								<hr/>
-								<span id="SelectedTokenContract" style="display:none"/>
+								<span id="SelectedTokenContract" style="display:none"></span>
 							</div>
-						</center>
-						<div>
+
 						  <button
-							class="btn btn-primary btn-lg btn-block mb-3"
+							class="blue-but btn-block mt-2 mb-3"
 							id="authorizeTokenButton"
-
 						  >
-							Enable <span class="TOKEN0">Token</span> on <span class="SOURCECHAIN">SOURCE CHAIN</span>
+							Enable
+							  <span class="TOKEN0">Token</span>
+							  on
+							  <span class="SOURCECHAIN">SOURCE CHAIN</span>
 						  </button>
-						</div>
 
-					  <div class="form-group">
-						<label for="amountToTransfer">Amount of <span class="TOKEN0">Token</span> to Transfer</label>
-						<div class="input-group">
-									<input type="text" class="form-control" id="amountToTransfer" placeholder="0.0">
-									   <div class="input-group-append">
-										<span class="input-group-text TOKEN0">TOKEN0</span>
-									  </div>
-							</div>
+
+					  <div class="form-group mb-2">
+						<label for="amountToTransfer">
+							Amount of <span class="TOKEN0">Token</span>
+							to Transfer
+						</label>
+
+						<div class="input-group w-50 my-4">
+							<input type="text" class="default" id="amountToTransfer" placeholder="0.0">
+							<span style="font-size: 13px;" class="inp-def-right TOKEN0">TOKEN0</span>
+						</div>
 					  </div>
 
                       <button
-                        class="btn btn-primary btn-lg btn-block mb-3"
+                        class="blue-but btn-block mb-2"
                         id="transferTokenButton"
                       >
                         Transfer <span class="TOKEN0">Token</span> to <span class="DESTINATIONCHAIN">DEST CHAIN</span>

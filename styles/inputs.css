@@ -1,0 +1,29 @@
+input.default{
+    background: none;
+    color: var(--white-op-50);
+    padding: .4em 1em;
+    font-size: 13px;
+    font-weight: 300;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--white-op-80);
+    transition: .3s;
+}
+
+input.default:focus,
+input.default:active,
+input.default:active:hover{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--but-blue);
+}
+
+/*text*/
+.inp-def-right{
+    background: var(--white-op-80);
+    color: var(--bg-black);
+    height: 100%;
+    padding: .4em 1em;
+    border-radius: .25em;
+    margin: 0 0 0 .25em;
+}
