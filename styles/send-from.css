@@ -1,14 +1,18 @@
+.dropdown-menu,
 .dropdown.send .dropdown-menu{
     margin-top: 5px;
 }
+.dropdown-menu,
 .dropdown.send .dropdown-menu,
 .dropdown.send .dropdown-item{
     background: #1C1E2D;
 }
+.dropdown-menu .dropdown-item,
 .dropdown.send .dropdown-item{
     padding: .7em 1em;
     transition: .3s;
 }
+.dropdown-menu .dropdown-item:hover,
 .dropdown.send .dropdown-item:hover{
     background: #10101C;
 }
