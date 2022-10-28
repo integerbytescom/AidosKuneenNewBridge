@@ -1,4 +1,6 @@
 .nav.nav-tabs{
+    display: flex;
+    justify-content: space-between;
     border-bottom: 0;
 }
 .nav.nav-tabs .nav-link.active{
@@ -9,11 +11,14 @@
 }
 .nav.nav-tabs .nav-link{
     padding: .4em 1.2em;
-    margin-right: .4em;
+    margin: .25em .4em .25em 0;
     border: none;
     font-weight: 200;
     color: var(--white-op-50);
     border-radius: .3em;
+}
+.nav.nav-tabs .nav-link:last-child{
+    margin-right: 0;
 }
 .nav.nav-tabs .nav-link:hover{
     color: var(--white);
@@ -31,6 +36,14 @@
     background: var(--op-50);
     border: none;
     color: var(--white-op-80);
+}
+
+.tab-content ul,
+.tab-content ol{
+    padding-left: .5rem !important;
+}
+.tab-content ul button.blue-but{
+    margin-top: .8em;
 }
 
 .tab-content .card p,
@@ -54,4 +67,27 @@ ul.sup-token-ul li b{
     border-radius: .25em;
     padding: .2em .5em;
     background-color: var(--white-op-10);
+}
+
+@media screen and (max-width: 1200px){
+    .nav.nav-tabs{
+        justify-content: left;
+    }
+    .tab-content .card{
+        padding: .5em;
+    }
+    .tab-content .card p,
+    .tab-content .card li,
+    .tab-content .card a,
+    .nav.nav-tabs .nav-link{
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 600px){
+    .tab-content .card p,
+    .tab-content .card li,
+    .tab-content .card a,
+    .nav.nav-tabs .nav-link{
+        font-size: 11px;
+    }
 }

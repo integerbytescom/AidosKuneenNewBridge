@@ -22,6 +22,7 @@
 	  <link rel="stylesheet" href="styles/navtab.css" type="text/css" />
 	  <link rel="stylesheet" href="styles/send-from.css" type="text/css" />
 	  <link rel="stylesheet" href="styles/inputs.css" type="text/css" />
+	  <link rel="stylesheet" href="styles/claim-recieve.css" type="text/css" />
 
 	<!--other script libs-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -355,12 +356,12 @@
 						 <hr/>
 					   </h6>
 					  <div class="form-group">
-						<div class="row">
-							<div class="col pt-5">
+						<div class="transf-fee-bal">
+							<div class="cont-fee pt-5">
 								<label for="FeeCredit"><b>Your current <span class="CUR1"> CURRENCY</span> fee credits:</b></label>
 								<input type="text" class="default w-100 my-2" readonly id="FeeCredit" placeholder="0.0">
 							</div>
-							<div class="col pt-5">
+							<div class="cont-fee pt-5">
 								<label for="ADKFeeCredit">Current fee required to <b>RECEIVE</b> token on <span class="DESTINATIONCHAIN">DEST CHAIN</span> side (per transfer):</label>
 								<input type="text" class="default w-100 my-2" readonly id="FeeAmount1" placeholder="0.0">
 							</div>
@@ -394,7 +395,7 @@
 									Top Up
 								  </button>
 							</div-->
-                            <div class="col">
+                            <div class="col text-fee-bal">
 							    <h6 class="fw-light">You can top up your fee account by sending <span class="CUR1">CURRENCY</span> directly to the Bridge account <i><b class="text-white">0x6B351E85596214c5E1a0Ec0131476774B1f47f18</b></i> <u>from the account you want to top up</u></h6><br/>The deposited fee funds will be credited instantly to your account once the deposit transaction has been mined on the target chain.
 								<br/><br/>
 								Note: Make sure you are topping up fees <b>ON THE CORRECT CHAIN</b>: <br/> &bull; If you want to <b>receive</b> token on the BSC side (i.e sending from AIDOS to BSC), you have to top up your <b>BNB Fee account on the Binance Smart Chain</b>. <br/> &bull; If you want to <b>receive</b> token on the AIDOS side (i.e sending from BSC to Aidos), you have to top up your <b>ADK Fee account on Aidos Network</b>.
@@ -512,12 +513,12 @@
 
 
 					  <div class="form-group mb-2">
-						<label for="amountToTransfer">
+						<label class="lab-amountToTransfer" for="amountToTransfer">
 							Amount of <span class="TOKEN0">Token</span>
 							to Transfer
 						</label>
 
-						<div class="input-group d-flex w-50 my-4">
+						<div class="amountToTransfer-input-group input-group d-flex my-4">
 							<input type="text" class="default" id="amountToTransfer" placeholder="0.0">
 							<span style="border-radius: .25em" class="inp-def-right mx-1 TOKEN0">TOKEN0</span>
 						</div>
@@ -638,7 +639,7 @@
 						  <div class="form-group">
 							<label for="amountToClaimAIDOS">Claimable Token</label>
 							<div class="input-group py-2 d-flex align-items-end">
-								<input type="text" class="default w-50" readonly id="amountToClaim" placeholder="0.0">
+								<input type="text" class="cl-r-inp default" readonly id="amountToClaim" placeholder="0.0">
 								<span class="inp-def-right TOKEN1">TOKEN1</span>
 							</div>
 						  </div>
@@ -655,7 +656,7 @@
 						  <div class="form-group">
 							<label for="amountToClaimBSC">Available Transfer Fee Credits (<span class="CUR1">CURRENCY</span>):</label>
 							<div class="input-group py-2 d-flex align-items-end">
-								<input type="text" class="default w-50" readonly id="feeBalanceForClaim" placeholder="0.0">
+								<input type="text" class="cl-r-inp default" readonly id="feeBalanceForClaim" placeholder="0.0">
 								<span class="inp-def-right CUR1">CURRENCY</span>
 							</div>
 						  </div>
@@ -717,7 +718,7 @@
 						  <div class="form-group">
 							<label for="transactionHashQuery">Transaction Hash of Transfer Transaction (on BSC or AIDOS Network):</label>
 							<div class="input-group d-flex align-items-end">
-								<input type="text" class="default w-50 my-3" id="transactionHashQuery" placeholder="0x123456[...]">
+								<input type="text" class="default my-3" id="transactionHashQuery" placeholder="0x123456[...]">
 
 								<button class="blue-but btn-block mb-3" style="max-height: 37px;" id="queryStatus">
 									Query Transfer Transaction Status
@@ -795,8 +796,8 @@
 					  <hr class="w-25 mx-auto" />
 				  </div>
 
-				  <div class="d-flex">
-					  <div class="w-50" style="border-radius: 0">
+				  <div class="adk-to-akadk-container">
+					  <div class="adk-to-akadk-inner" style="border-radius: 0">
 
 							  <div class="card" style="border-radius: 0">
 								  <center class="mx-5">
@@ -818,7 +819,7 @@
 								  </center>
 							</div>
 					   </div>
-					   <div class="w-50" style="border-radius: 0">
+					   <div class="adk-to-akadk-inner" style="border-radius: 0">
 							<div class="card" style="border-radius: 0">
 								  <center class="mx-5">
 								  <h4>

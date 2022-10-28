@@ -26,7 +26,7 @@ input.default:active:hover{
     padding: .4em 1em;
     border-radius: .25em;
     margin: 0 0 0 .25em;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {

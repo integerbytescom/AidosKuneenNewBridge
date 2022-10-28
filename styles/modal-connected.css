@@ -27,3 +27,13 @@
     font-weight: 500;
     color: white;
 }
+
+@media screen and (max-width: 500px){
+    .modal-connected .container-text{
+        font-size: 12px;
+    }
+    .modal-connected{
+        width: 18em;
+        padding: 1em 1em;
+    }
+}

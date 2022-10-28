@@ -19,3 +19,10 @@
 .navbar.top .navbar-brand img{
     margin-right: .5em;
 }
+
+@media screen and (max-width: 600px){
+    .navbar.top .navbar-brand{
+        font-size: .8em;
+    }
+    img#imgSrc, img#imgDest{display: none !important;}
+}
