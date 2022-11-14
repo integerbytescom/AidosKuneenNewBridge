@@ -197,6 +197,19 @@
 		</li>
       </ul>
 
+	<div class="w-50 p-2 mt-3 mx-auto alert alert-danger small" role="alert" id="noMMExtension">
+		Error initializing Web3 backend. This app requires Metamask to be installed and active.
+	</div>
+	<!--ethereum connect check-->
+	<script>
+		const alert = document.querySelector('#noMMExtension');
+		if (!window.ethereum){
+			alert.style.display = "block";
+		}else {
+			alert.style.display = "none";
+		}
+	</script>
+
       <div class="tab-content pb-5" id="myTabContent">
 		<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
           <section>

@@ -53,6 +53,20 @@ body{
     body{background-size: 250%;}
 }
 
+/*alert no metamsk*/
+#noMMExtension{font-size: 12px;}
+@media screen and (max-width: 1300px){
+    #noMMExtension{
+        width: 75% !important;
+    }
+}
+@media screen and (max-width: 750px){
+    #noMMExtension{
+        width: 100% !important;
+        font-size: 10px;
+    }
+}
+
 /*cursor and select*/
 h1,h3,h4,h6,p,li,img{
     cursor: default;
