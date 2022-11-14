@@ -31,3 +31,25 @@
 .close-but-text:hover{
     background: var(--close-hover);
 }
+
+/*explorer link*/
+.expl-link{
+    background: rgba(73, 73, 98, 0.75);
+    color: var(--white);
+    padding: .3em 1.5em;
+    border-radius: .4em;
+    font-weight: 300;
+    transition: .3s;
+    border:none;
+    outline: none;
+    margin-right: 10px;
+    text-decoration: none;
+}
+.expl-link:hover{
+    background: #494962;
+    color: var(--white);
+}
+
+@media screen and (max-width: 450px){
+    .expl-link{display: none;}
+}
